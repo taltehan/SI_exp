@@ -21,8 +21,11 @@ lists_tab = sprintf('List%d_%s', list_number, list2str(run));
 
 %% Extract stimuli names from Excel
 excel_name = sprintf('%s_stimuli.xlsx', experiment);
-[audio_numbers, visual_file_name, ~] = xlsread(fullfile(path2excel, excel_name), lists_tab);
+% [audio_numbers, visual_file_name, ~] = xlsread(fullfile(path2excel, excel_name), lists_tab);
+stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false);
+visual_file_name = stimuli_names{:,1};
 if params.enable_audio
+    audio_numbers = stimuli_names{:,2};
     audio_files_info = dir(fullfile(path2stimuli_audio, '*.wav'));
     audio_files_names = extractfield(audio_files_info, 'name');
 end

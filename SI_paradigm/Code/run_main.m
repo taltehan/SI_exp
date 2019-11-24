@@ -1,11 +1,8 @@
+% Run
 clear all; close all; clc
 
 addpath('functions')
-% Add_Psych
-% cd('C:\toolbox\Psychtoolbox')
-% SetupPsychtoolbox
 
-% PsychPortAudio3('Close');
 %% Experiment, Run and Subject Details
 experiment = choosedialog('Experiment', 'Choose an experiment:', {'Shapes', 'Flanker',  'Animals'});
 answer = inputdlg({'Subject name', 'list', 'Run number (-1 for practice)'}, 'Input', 1);
