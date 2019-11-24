@@ -14,7 +14,7 @@ else
     params.last_lag = 3*params.TR;
 end
 params.audio_duration = params.TR; %s
-params.fixation_duration = 0.3; % [sec]
+params.fixation_duration = 0.3; %s
 switch experiment
     case 'Flanker'
         params.visual_duration = params.TR - params.fixation_duration; %s
@@ -24,6 +24,7 @@ end
 params.practice_duration = 2*(params.visual_duration + params.fixation_duration);
 
 %% Visual Presentation
+% for fullscreen:
 % rect = get(0, 'ScreenSize');
 % params.rect = [0 0 rect(3:4)];
 % If fullscreen doesn't work:

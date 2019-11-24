@@ -4,7 +4,6 @@ addpath('functions')
 % Add_Psych
 % cd('C:\toolbox\Psychtoolbox')
 % SetupPsychtoolbox
-% cd('C:\Users\LENOVO\Documents\MATLAB\SLI fMRI Experiment\Paradigm\SLI_paradigm\Code')
 
 % PsychPortAudio3('Close');
 %% Experiment, Run and Subject Details
