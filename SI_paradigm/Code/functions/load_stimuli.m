@@ -21,7 +21,6 @@ lists_tab = sprintf('List%d_%s', list_number, list2str(run));
 
 %% Extract stimuli names from Excel
 excel_name = sprintf('%s_stimuli.xlsx', experiment);
-% [audio_numbers, visual_file_name, ~] = xlsread(fullfile(path2excel, excel_name), lists_tab);
 stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false);
 visual_file_name = stimuli_names{:,1};
 if params.enable_audio
@@ -33,9 +32,12 @@ end
 %% Load lists
 lists_file_name = strcat(experiment, '_lists.xlsx');
 lists_path = fullfile(path2excel, lists_file_name);
-[list_num_data, list_txt_data, ~] = xlsread(lists_path, lists_tab);
-[optseq_list.timing, optseq_list.condition_number, optseq_list.stimulus_duration] = feval(@(x) x{:}, {list_num_data(:,1), list_num_data(:,2), list_num_data(:,3)});
-optseq_list.condition_name = list_txt_data(:,1);
+% [list_num_data, list_txt_data, ~] = xlsread(lists_path, lists_tab);
+list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false);
+% [optseq_list.timing, optseq_list.condition_number, optseq_list.stimulus_duration] = feval(@(x) x{:}, {list_num_data(:,1), list_num_data(:,2), list_num_data(:,3)});
+[test_list.timing, test_list.condition_number, test_list.stimulus_duration] = feval(@(x) x{:}, {list_data{:,1}, list_data{:,2}, list_data{:,3}});
+% optseq_list.condition_name = list_txt_data(:,1);
+test_list.condition_name = list_data{:,5};
 stimuli.num_trials = length(optseq_list.condition_number); % Trials including NULL conditions
 
 %% Build stimuli struct for output
