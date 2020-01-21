@@ -32,12 +32,9 @@ end
 %% Load lists
 lists_file_name = strcat(experiment, '_lists.xlsx');
 lists_path = fullfile(path2excel, lists_file_name);
-% [list_num_data, list_txt_data, ~] = xlsread(lists_path, lists_tab);
 list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false);
-% [optseq_list.timing, optseq_list.condition_number, optseq_list.stimulus_duration] = feval(@(x) x{:}, {list_num_data(:,1), list_num_data(:,2), list_num_data(:,3)});
-[test_list.timing, test_list.condition_number, test_list.stimulus_duration] = feval(@(x) x{:}, {list_data{:,1}, list_data{:,2}, list_data{:,3}});
-% optseq_list.condition_name = list_txt_data(:,1);
-test_list.condition_name = list_data{:,5};
+[optseq_list.timing, optseq_list.condition_number, optseq_list.stimulus_duration] = feval(@(x) x{:}, {list_data{:,1}, list_data{:,2}, list_data{:,3}});
+optseq_list.condition_name = list_data{:,5};
 stimuli.num_trials = length(optseq_list.condition_number); % Trials including NULL conditions
 
 %% Build stimuli struct for output
@@ -50,6 +47,7 @@ switch experiment
     case 'Flanker'
         cnt.Congruent = 0; cnt.Incongruent = 0;
 end
+
 token_number_cnt = 0; % Omit NULL conditions from counting
 for i = 1:stimuli.num_trials
     stimuli.condition_name{i} = optseq_list.condition_name{i};
