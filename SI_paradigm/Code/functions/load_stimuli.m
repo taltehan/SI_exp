@@ -78,7 +78,8 @@ if params.enable_audio
     stimuli.ping.y = stimuli.ping.y(:,1);
     stimuli.ping.length = 1000*length(stimuli.ping.y)/stimuli.ping.fs; % Duration in ms
 end
-    
+
+% Create stimuli struct
 stimuli.list = optseq_list;
 stimuli.first_stim_timing = params.beginning_lag - params.practice_duration;
 stimuli.start_trial = stimuli.list.timing' + stimuli.first_stim_timing;
