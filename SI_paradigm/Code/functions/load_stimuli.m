@@ -38,23 +38,11 @@ optseq_list.condition_name = list_data{:,5};
 stimuli.num_trials = length(optseq_list.condition_number); % Trials including NULL conditions
 
 %% Build stimuli struct for output
-switch experiment
-    case 'Shapes'
-        cnt.HelekAll = 0; cnt.HelekSome = 0; cnt.HelekNone = 0;
-        cnt.KolAll = 0; cnt.KolSome = 0; cnt.KolNone = 0;
-    case 'Animals'
-        cnt.Some = 0; cnt.All = 0; cnt.Filler = 0;
-    case 'Flanker'
-        cnt.Congruent = 0; cnt.Incongruent = 0;
-end
-
 token_number_cnt = 0; % Omit NULL conditions from counting
 for i = 1:stimuli.num_trials
     stimuli.condition_name{i} = optseq_list.condition_name{i};
     if ~strcmp(optseq_list.condition_name{i}, 'NULL')
         token_number_cnt = token_number_cnt + 1;
-        curr_condition_name = optseq_list.condition_name{i};
-        cnt.(curr_condition_name) = cnt.(curr_condition_name) + 1;
         % load AUDITORY
         if params.enable_audio
             audio_number = audio_numbers(token_number_cnt);
