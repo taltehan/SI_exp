@@ -25,7 +25,7 @@ if params.enable_audio
     % pahandle = PsychPortAudio('Open', [], [], 2, 44100, 1, 0);
 end
 
-% Output file
+% Create output file
 file_name = sprintf('log_subject_%i_run_%i.txt', subject, run);
 output_dir = sprintf('Output_%s', experiment);
 fid = fopen(fullfile('..', output_dir, file_name), 'w');
@@ -154,8 +154,6 @@ for i = 1:stimuli.num_trials
                     press_event = true; choice_str = '2';
                 elseif any(keyCode([rightKey,KbName('4$')]))
                     press_event = true; choice_str = '4';
-%                     elseif any(keyCode([middleKey2,KbName('3#')]))
-%                         choice_str = '3';
                 elseif keyCode(escKey)
                     DisableKeysForKbCheck([]);
                     Screen('CloseAll');
@@ -180,8 +178,6 @@ for i = 1:stimuli.num_trials
             end
             % end
             log_row{5} = toc(grandStart);
-%             fprintf(fid,'Trial %i image ended from grand start: %f\n', i, toc(grandStart));
-%             fprintf(fid,'Trial %i image ended from trial start: %f\n', i, toc(trial));
 
             %% Fixation 
             Screen(win, 'TextSize', 30);
@@ -220,7 +216,7 @@ while toc(last_lag) < params.last_lag
     end
 end
 
-%%save data
+%% save data
 toc(grandStart)
 DisableKeysForKbCheck([]);
 Screen('CloseAll');
@@ -231,9 +227,5 @@ PsychPortAudio('Close');
 fclose(fid); % close log file
 
 ShowCursor
-% catch
-%     results.stimuli = stimuli;
-%     results.params = params;
-% end
 
 end
