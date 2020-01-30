@@ -1,6 +1,11 @@
 function results = main_SI_grand_start(subject,run, list_number, params, experiment)
 % Present auditory and visual stimuli. The first two stimuli are for
 % practice only (not included in the analysis).
+
+% Trial structure:
+% 2000ms auditory + visual ->
+% 1700ms visual + response ->
+% 300ms fixation
 %% Setup - Read the comments below for new devices
 % Before running 'PsychPortAudio', check the available audio devices using
 % PsychPortAudio('GetDevices').
