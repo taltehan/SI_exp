@@ -31,7 +31,7 @@ HideCursor
 % window properties and stimuli
 rect = params.rect;
 win = Screen('OpenWindow', 0, params.screen_color, rect);
-stimuli = load_stimuli(win, run, list_number, params, experiment);
+stimuli = load_stimuli_ToM(win, run, list_number, params, experiment);
 Screen(win, 'TextSize', params.fixation_size);
 intro_img_path = sprintf('../Intro_%s.jpg', experiment);
 intro_img_read = imread(intro_img_path);
