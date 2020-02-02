@@ -41,6 +41,8 @@ for i = 1:stimuli.num_trials
     stimuli.duration(i) = lists.stimulus_duration(i);
     % load question
     stimuli.visual(i).question_file_name = strcat(question_file_name{token_number_cnt}, '.jpg');
+    stimuli.visual(i).question = imread(fullfile(path2stimuli_visual, stimuli.visual(i).question_file_name));
+    stimuli.visual(i).image = Screen('MakeTexture', win, stimuli.visual(i).question);
 end
 
 % Create stimuli struct
