@@ -77,6 +77,7 @@ switch experiment
     case 'ToM'
         params.screen_color = [0 0 0];
         params.fixation_color = [0 0 0];
+        params.choice_color = [255 255 255];
     otherwise
         params.screen_color = [0 0 0];
         params.fixation_color = [255 255 255]; % white

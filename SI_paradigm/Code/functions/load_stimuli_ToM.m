@@ -26,8 +26,11 @@ lists_path = fullfile(path2excel, lists_file_name);
 list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false);
 lists.condition_name = list_data{:,1};
 stimuli.num_trials = length(lists.condition_name);
-lists.stimulus_duration = repmat(params.story_duration, 1, stimuli.num_trials);
-lists.timing = cumsum(lists.stimulus_duration);
+
+%% Timing
+single_trial_duration = params.visual_duration + params.fixation_duration;
+lists.stimulus_duration = repmat(single_trial_duration, 1, stimuli.num_trials);
+lists.timing = cumsum(lists.stimulus_duration)-single_trial_duration;
 
 %% Build stimuli struct for output
 token_number_cnt = 0; % Omit NULL conditions from counting
@@ -48,6 +51,6 @@ end
 % Create stimuli struct
 stimuli.list = lists;
 stimuli.first_stim_timing = params.beginning_lag - params.practice_duration;
-stimuli.start_trial = stimuli.list.timing' + stimuli.first_stim_timing;
+stimuli.start_trial = stimuli.list.timing + stimuli.first_stim_timing;
 stimuli.end_trial = stimuli.start_trial + stimuli.duration;
 end

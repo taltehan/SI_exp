@@ -132,7 +132,7 @@ for i = 1:stimuli.num_trials
         log_row{5} = toc(grandStart);
         % Show subject's choice on the top-right corner
         Screen(win, 'TextSize', 30);
-        DrawFormattedText(win, choice_str, 0.95*rect(3), 0.05*rect(4), params.fixation_color)
+        DrawFormattedText(win, choice_str, 0.95*rect(3), 0.05*rect(4), params.choice_color)
         % Show fixation
         Screen(win, 'TextSize', params.fixation_size);
         % DrawFormattedText2(fixation_cache);

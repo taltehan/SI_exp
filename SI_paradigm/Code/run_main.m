@@ -9,7 +9,7 @@ answer = inputdlg({'Subject name', 'list', 'Run number (-1 for practice)'}, 'Inp
 subject = str2double(answer{1});
 list_number = str2double(answer{2});
 run = str2double(answer{3});
-filename = sprintf('Subject_%i_run_%i.mat', subject, run);
+filename = sprintf('Subject_%i_run_%i.mat43', subject, run);
 output_dir = sprintf('Output_%s', experiment);
 % Check if the subject number already exists
 A = exist(fullfile('..', output_dir, filename), 'file');
