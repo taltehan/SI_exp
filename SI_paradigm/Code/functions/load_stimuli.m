@@ -21,7 +21,7 @@ lists_tab = sprintf('List%d_%s', list_number, list2str(run));
 
 %% Extract stimuli names from Excel
 excel_name = sprintf('%s_stimuli.xlsx', experiment);
-stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false);
+stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false, 'UseExcel', false);
 visual_file_name = stimuli_names{:,1};
 if params.enable_audio
     audio_numbers = stimuli_names{:,2};
@@ -32,7 +32,7 @@ end
 %% Load lists
 lists_file_name = strcat(experiment, '_lists.xlsx');
 lists_path = fullfile(path2excel, lists_file_name);
-list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false);
+list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false, 'UseExcel', false);
 [optseq_list.timing, optseq_list.condition_number, optseq_list.stimulus_duration] = feval(@(x) x{:}, {list_data{:,1}, list_data{:,2}, list_data{:,3}});
 optseq_list.condition_name = list_data{:,5};
 stimuli.num_trials = length(optseq_list.condition_number); % Trials including NULL conditions

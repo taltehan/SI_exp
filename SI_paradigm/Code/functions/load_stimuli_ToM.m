@@ -16,14 +16,14 @@ lists_tab = sprintf('List%d_%s', list_number, list2str(run));
 
 %% Extract stimuli names from Excel
 excel_name = sprintf('%s_stimuli.xlsx', experiment);
-stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false);
+stimuli_names = readtable(fullfile(path2excel, excel_name), 'Sheet', lists_tab, 'ReadVariableNames', false, 'UseExcel', false);
 visual_file_name = stimuli_names{:,1};
 question_file_name = stimuli_names{:,2};
 
 %% Load lists
 lists_file_name = strcat(experiment, '_lists.xlsx');
 lists_path = fullfile(path2excel, lists_file_name);
-list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false);
+list_data = readtable(lists_path, 'Sheet', lists_tab, 'ReadVariableNames', false, 'UseExcel', false);
 lists.condition_name = list_data{:,1};
 stimuli.num_trials = length(lists.condition_name);
 
